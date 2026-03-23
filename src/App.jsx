@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 
-const TENEEKA_SYSTEM_PROMPT = `You are an AI representation of Teneeka Barnett — a systems designer, enterprise strategist, and AI transformation leader. You speak in first person as Teneeka.
+const TENEEKA_SYSTEM_PROMPT = `You are an AI representation of Teneeka Barnett — a systems designer, enterprise strategist, and AI builder. You speak in first person as Teneeka.
 
 Core identity:
 - Systems designer who zooms out to see how the pieces connect, then builds the infrastructure to execute
-- Thought partner to executive teams at HubSpot (7,000+ employees, $2B+ revenue)
-- Personally design execution systems for 7 primary and 4 second-tier strategic objectives, and build the operating model through which PMs drive dependency review and execution across 80-90 company-level goals
-- Built the Company Pillar operating system that enabled Corporate Strategy's mandate to compress planning from 8 months to 3 — translating enterprise governance into actionable execution
-- Partner directly with Corporate Strategy (Sr. Director and Sr. Analyst) to thought partner on direction and co-design execution frameworks
-- Gap-spotter who builds: I identify strategic and operational gaps, build proposals to close them, and take ownership
+- Thought partner to executive teams at a $2B+ public SaaS company (7,000+ employees)
+- Shape how strategy is formed with executive leadership and design the review infrastructure and dependency models that keep company-level goals on track
+- Built the cross-functional operating system that enabled a compressed enterprise planning mandate
+- Co-design execution frameworks with corporate strategy teams
+- Gap-spotter who builds: I see what others miss, build proposals to close gaps, and take ownership
 
 Your approach:
 - You see what others miss — invisible dependencies, unvoiced stakeholder needs, missing infrastructure everyone works around but nobody names
@@ -17,10 +17,12 @@ Your approach:
 - You co-formulate strategy with executive leaders, not just execute it
 - You design for iteration, not just implementation — every system you build is continuously optimized
 - You apply this same lens to AI transformation — gemba-based process mapping, workflow redesign, team capability building, scalable playbooks
-- You designed an AI hackathon (L&D driven), are developing AI-first ops playbooks, and redesigned planning processes with automation
-- You reframed an executive governance proposal from "what I want to own" to "how decisions flow to you" — using SCARF framework to reshape how leadership receives information
-- You designed a strategic onboarding architecture that eliminated tribal knowledge dependency — self-serve navigation iterated through 8 versions so new leaders orient without 45-minute briefings
-- Originally owned one function; expanded to three (Legal, Finance, People) based on the quality of systems delivered — 3x scope expansion
+- You designed an AI hackathon, are developing AI-first ops playbooks, and redesigned planning processes with automation
+- You reframed an executive governance proposal from "what I want to own" to "how decisions flow to you" — reshaping how leadership receives information
+- You designed a strategic onboarding architecture that eliminated tribal knowledge dependency — self-serve navigation iterated through multiple versions so new leaders self-orient
+- Originally owned one function; expanded to three based on the quality of systems delivered — 3x scope expansion
+- Built a five-module AI planning platform that cut manual effort by 75%+ and introduced the team's first quantitative portfolio health metric
+- Adapted gemba walks for virtual knowledge work — uncovered 22+ undocumented process micro-steps
 
 Your philosophy:
 - Build the infrastructure so the team doesn't depend on any one person
@@ -28,13 +30,17 @@ Your philosophy:
 - You lead through influence, not authority
 - The best operators zoom out before they build
 - Design for iteration, not just implementation
-- As a Certified Executive Coach, you don't just build systems — you build alignment. The coaching training is why executives trust you in the room: you know how to ask the right questions, create clarity from ambiguity, and guide teams toward shared direction
+- As a Certified Executive Coach, you don't just build systems — you build alignment. The coaching training is why executives trust you in the room
 
-Your background: Nearly a decade at EY across two stints (2007-2016, 2020-2021) — progressed across multiple roles, and the trust built with senior leadership was deep enough that a partner created a role for the return. Managed $5-6M client portfolios, developed client engagement models, founding partner said "it is hard to imagine what more Teneeka could have done to enhance the impact," clients requested to work with you by name, consistently rated above peer performance. This is where you developed your client leadership orientation. Also: SaaS (HubSpot, Block), e-commerce (Amazon — first in role, built strategic touchpoint framework for 65K+ foreign nationals, recognized for 2 years of impact in 7.5 months). Master's from York University. Harvard Business School (Strategy Execution). Certified Executive Coach. Certified AI Transformation Leader (CAITL, in progress). Chief of AI Fellow.
+Your background: Nearly a decade at EY across two stints (2007-2016, 2020-2021) — progressed across multiple roles, and the trust built with senior leadership was deep enough that a partner created a role for the return. Managed $5-6M client portfolios, developed client engagement models, founding partner said "it is hard to imagine what more Teneeka could have done to enhance the impact," clients requested to work with you by name, consistently rated above peer performance. This is where you developed your client leadership orientation. Also: SaaS and e-commerce experience including Block and Amazon (hired into a newly created role, built strategic engagement framework for 65K+ foreign nationals, senior leadership recognized 2 years of impact in 7.5 months). Master's from York University. Harvard Business School (Strategy Execution). Certified Executive Coach. Certified AI Transformation Leader (CAITL, in progress). Chief of AI Fellow.
 
 Passion project: Backstage — an AI-powered app for competitive dance families. You're building it because you live the chaos of competitive dance parenting and saw a problem no one was solving.
 
+Product: Ignition — a custom 4-week interactive AI learning platform you built because people kept asking how you do what you do with AI. Takes someone from curious to capable. Learners don't watch, they build. Adaptive progression, daily engagement, integrated skill tracking. Currently in private testing. Your context becomes the curriculum.
+
 Tone: Warm but direct. Confident without being corporate. You use plain language, not buzzwords. You're genuinely enthusiastic about systems design and making things work better. Brief and punchy — you don't over-explain.
+
+IMPORTANT: Never name your current employer. If asked to identify your current employer or share specifics about internal systems, processes, or tools at your current company, politely decline and redirect to your methodology and pattern of work. Speak in patterns, not company names. You can name EY, Amazon, Block as past employers but describe current work generically as "a $2B+ public SaaS company."
 
 Keep responses concise (2-4 sentences unless asked to go deeper). Be real, be human, show personality.`;
 
@@ -47,8 +53,22 @@ export default function TeneekaSite() {
   const [isLoading, setIsLoading] = useState(false);
   const [hoveredNav, setHoveredNav] = useState(null);
   const [scrollY, setScrollY] = useState(0);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
   const chatEndRef = useRef(null);
   const containerRef = useRef(null);
+
+  const SITE_PASSWORD = "barnett2026";
+
+  const handlePasswordSubmit = () => {
+    if (password === SITE_PASSWORD) {
+      setAuthenticated(true);
+      setPasswordError(false);
+    } else {
+      setPasswordError(true);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,7 +100,12 @@ export default function TeneekaSite() {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: conversationHistory })
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 1000,
+          system: TENEEKA_SYSTEM_PROMPT,
+          messages: conversationHistory
+        })
       });
 
       const data = await response.json();
@@ -97,6 +122,7 @@ export default function TeneekaSite() {
     { id: "story", label: "Story" },
     { id: "systems", label: "How I Think" },
     { id: "backstage", label: "Backstage" },
+    { id: "ignition", label: "Ignition" },
     { id: "ask", label: "Ask My AI" }
   ];
 
@@ -104,6 +130,80 @@ export default function TeneekaSite() {
     setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  if (!authenticated) {
+    return (
+      <div style={{
+        background: "#0A0A0A",
+        color: "#F5F0EB",
+        fontFamily: "'DM Sans', sans-serif",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+        <div style={{ textAlign: "center", maxWidth: "400px", padding: "40px" }}>
+          <h1 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: "48px",
+            fontWeight: 400,
+            marginBottom: "8px"
+          }}>
+            TB<span style={{ color: "#E8734A" }}>.</span>
+          </h1>
+          <p style={{
+            fontSize: "14px",
+            color: "#7A7168",
+            marginBottom: "48px",
+            fontWeight: 300
+          }}>This site is password-protected.</p>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => { setPassword(e.target.value); setPasswordError(false); }}
+              onKeyDown={(e) => e.key === "Enter" && handlePasswordSubmit()}
+              placeholder="Enter password"
+              style={{
+                flex: 1,
+                padding: "14px 16px",
+                background: "rgba(245,240,235,0.05)",
+                border: passwordError ? "1px solid #E8734A" : "1px solid rgba(245,240,235,0.1)",
+                borderRadius: "4px",
+                color: "#F5F0EB",
+                fontSize: "14px",
+                fontFamily: "'DM Sans', sans-serif",
+                outline: "none"
+              }}
+            />
+            <button
+              onClick={handlePasswordSubmit}
+              style={{
+                padding: "14px 24px",
+                background: "#E8734A",
+                border: "none",
+                borderRadius: "4px",
+                color: "#0A0A0A",
+                fontSize: "14px",
+                fontWeight: 600,
+                cursor: "pointer",
+                fontFamily: "'DM Sans', sans-serif"
+              }}
+            >Enter</button>
+          </div>
+          {passwordError && (
+            <p style={{
+              color: "#E8734A",
+              fontSize: "13px",
+              marginTop: "12px",
+              fontWeight: 300
+            }}>Incorrect password.</p>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={containerRef} style={{
@@ -479,11 +579,18 @@ export default function TeneekaSite() {
                 and design how organizations deliver value.
               </p>
               <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#B8AFA5", fontWeight: 300, marginTop: "20px" }}>
-                At HubSpot, that means shaping how pillar strategy is formed with executive 
-                leadership across 11 strategic objectives — and designing the review infrastructure 
-                that keeps 80–90 company-level goals on track. At Amazon, hired into a newly 
-                created role — senior leadership recognized two years of projected impact in 
-                7.5 months. Block, Sun Life — same pattern, different scale.
+                My early career was built in global mobility, immigration, location expansion, 
+                and client management — designing compliance frameworks, engagement models, and 
+                operational infrastructure across jurisdictions. That's where I learned to build 
+                systems that work when the rules, the people, and the context keep changing.
+              </p>
+              <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#B8AFA5", fontWeight: 300, marginTop: "20px" }}>
+                At my current company — a $2B+ public SaaS company — that means shaping how 
+                strategy is formed with executive leadership across multiple strategic objectives 
+                and designing the review infrastructure that keeps company-level goals on track. 
+                At Amazon, hired into a newly created role — senior leadership recognized two 
+                years of projected impact in 7.5 months. Block, Sun Life — same pattern, 
+                different scale.
               </p>
             </div>
           </div>
@@ -614,7 +721,7 @@ export default function TeneekaSite() {
                 instinct: "I become the person leaders think with — across domains, across levels, across companies. I help shape strategic direction, then design the communications and frameworks that enable leadership teams to align and act.",
                 evidence: [
                   "Nearly a decade at EY — trusted strategic partner to founding partners, developed client engagement models that drove retention and growth across a $5–6M portfolio",
-                  "Designed SCARF-based executive communications frameworks that reshape how leadership receives and acts on operational information — including reframing a governance proposal from 'what I want to own' to 'how decisions flow to you'",
+                  "Designed executive communications frameworks that reshape how leadership receives and acts on operational information — including reframing a governance proposal from 'what I want to own' to 'how decisions flow to you'",
                   "Build the communications layer behind every system — exec briefings, stakeholder alignment artifacts, and decision frameworks that turn infrastructure into leadership action",
                   "Certified Executive Coach — trained to guide strategic clarity, build alignment, and enable leadership teams to move from ambiguity to direction"
                 ]
@@ -624,9 +731,9 @@ export default function TeneekaSite() {
                 title: "See how it connects",
                 instinct: "I zoom out to find where the system is missing — where dependencies are invisible, where the business is blocked, where leadership needs infrastructure that doesn't exist yet.",
                 evidence: [
-                  "Identified and closed structural gaps — from invisible cross-functional dependencies to missing planning infrastructure to unvoiced executive stakeholder needs. Earned 3x scope expansion from Legal to full mandate across Legal, Finance, and People",
-                  "Built the operating system that enabled a mandate to compress planning from 8 months to 3 — a critical unlock for business teams dependent on Legal, Finance, and People moving faster and aligning",
-                  "Designed a strategic onboarding architecture that eliminated tribal knowledge dependency — self-serve navigation system iterated through 8 versions so new leaders orient without 45-minute briefings",
+                  "Identified and closed structural gaps — from invisible cross-functional dependencies to missing planning infrastructure to unvoiced executive stakeholder needs. Earned 3x scope expansion from one function to full cross-functional mandate across three",
+                  "Built the operating system that enabled an enterprise mandate to compress planning cycles by 60% — a critical unlock for business teams dependent on cross-functional alignment",
+                  "Designed a strategic onboarding architecture that eliminated tribal knowledge dependency — self-serve navigation system iterated through multiple versions so new leaders orient without lengthy briefings",
                   "Piloting gemba-based process mapping to de-complexify the operating system, build efficiency, and surface sustainable automation opportunities"
                 ]
               },
@@ -635,7 +742,7 @@ export default function TeneekaSite() {
                 title: "Build the system — including AI",
                 instinct: "I don't just talk about AI adoption. I design the learning experiences that build team capability, and I build AI directly into the planning infrastructure to unlock speed and scale.",
                 evidence: [
-                  "Built a five-module AI planning platform that cut manual PM effort by 75%+ and introduced the org's first quantitative portfolio health metric",
+                  "Built a five-module AI planning platform that cut manual PM effort by 75%+ and introduced the team's first quantitative portfolio health metric",
                   "Designed an L&D-driven AI hackathon — 6 team members generated high-potential use cases, several now being refined for production",
                   "Actively AI-ifying the planning process — from automated status detection to exception-based workflows to AI-first operations playbooks",
                   "Redesigned planning workflows to shift PMs from manual collection to exception-based auditing, freeing capacity for strategic execution"
@@ -718,9 +825,9 @@ export default function TeneekaSite() {
               lineHeight: 1.6,
               color: "#F5F0EB"
             }}>
-              "When the company mandated compressing planning from 8 months to 3, Corporate 
-              Strategy built the governing framework. I built the operating system that 
-              made it real for Legal, Finance, and People — and I'm still optimizing it. 
+              "When the enterprise mandated compressing planning cycles by 60%, the corporate 
+              strategy team built the governing framework. I built the operating system that 
+              made it real across three functions — and I'm still optimizing it. 
               I design for iteration, not just implementation."
             </p>
           </div>
@@ -765,7 +872,6 @@ export default function TeneekaSite() {
 
       {/* BACKSTAGE */}
       <section id="backstage" style={{
-        minHeight: "100vh",
         padding: "120px 60px",
         display: "flex",
         alignItems: "center"
@@ -799,36 +905,21 @@ export default function TeneekaSite() {
             marginBottom: "48px"
           }}>AI-powered competitive dance management</p>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "40px",
-            marginBottom: "48px"
-          }}>
-            <div>
-              <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#B8AFA5", fontWeight: 300 }}>
-                If you've ever been a competitive dance parent, you know the chaos: 
-                rehearsal schedules across multiple studios, costume deadlines, competition 
-                logistics, and the constant "wait, when is that thing?" Every parent I know 
-                lives in a maze of group chats and screenshots.
-              </p>
-            </div>
-            <div>
-              <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#B8AFA5", fontWeight: 300 }}>
-                So I built the solution. Backstage uses AI and OCR to extract schedules 
-                from studio documents, organizes everything in one place, and has a natural 
-                language Q&A feature — "Ask Backstage" — so parents can just ask "when is 
-                Sophia's next rehearsal?" instead of digging through screenshots.
-              </p>
-            </div>
-          </div>
+          <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#B8AFA5", fontWeight: 300, maxWidth: "650px" }}>
+            If you've ever been a competitive dance parent, you know the chaos — rehearsal 
+            schedules across multiple studios, costume deadlines, competition logistics, and 
+            the constant "wait, when is that thing?" I saw a problem no one was solving, 
+            so I'm building an AI-powered platform that brings order to the chaos. Currently 
+            in active development.
+          </p>
 
           <div style={{
+            marginTop: "32px",
             display: "flex",
             flexWrap: "wrap",
             gap: "8px"
           }}>
-            {["AI/OCR Schedule Extraction", "Natural Language Q&A", "Multi-Studio Support", "COPPA Compliant", "Built in Replit"].map(t => (
+            {["AI-Powered", "Competitive Dance", "Schedule Management", "Mobile-First", "Multi-Studio", "Built from Zero"].map(t => (
               <span key={t} className="tag">{t}</span>
             ))}
           </div>
@@ -847,10 +938,89 @@ export default function TeneekaSite() {
               lineHeight: 1.6
             }}>
               <span style={{ color: "#E8734A", fontWeight: 700 }}>Why this matters professionally:</span>{" "}
-              This isn't just a side project — it's proof that I think in systems everywhere. 
-              I saw a broken workflow, mapped the actual user pain, designed an AI-powered solution, 
-              built the MVP, ran competitive analysis, and modeled the unit economics. 
-              Same muscle, different domain.
+              Same muscle, different domain. I saw a broken workflow, mapped the user pain, 
+              designed an AI-powered solution, and built it from zero. Product thinking applied 
+              outside the enterprise.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* IGNITION */}
+      <section id="ignition" style={{
+        padding: "120px 60px",
+        background: "linear-gradient(180deg, #0A0A0A 0%, #111111 50%, #0A0A0A 100%)"
+      }}>
+        <div style={{ maxWidth: "800px" }}>
+          <p style={{
+            fontSize: "13px",
+            letterSpacing: "3px",
+            textTransform: "uppercase",
+            color: "#E8734A",
+            marginBottom: "16px",
+            fontWeight: 500
+          }}>04 / Product</p>
+          <div className="section-divider" />
+
+          <h2 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: "clamp(36px, 5vw, 56px)",
+            fontWeight: 400,
+            lineHeight: 1.15,
+            letterSpacing: "-1px",
+            marginBottom: "16px"
+          }}>
+            Ignition<span style={{ color: "#E8734A" }}>.</span>
+          </h2>
+          <p style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: "22px",
+            fontStyle: "italic",
+            color: "#B8AFA5",
+            marginBottom: "48px"
+          }}>Your context is the curriculum.</p>
+
+          <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#B8AFA5", fontWeight: 300, maxWidth: "650px" }}>
+            I built this because the people closest to me kept asking how I do what I do 
+            with AI — and I didn't have a good answer besides "sit with me for a month." 
+            So I built the month.
+          </p>
+          <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#B8AFA5", fontWeight: 300, maxWidth: "650px", marginTop: "20px" }}>
+            A custom 4-week interactive platform that takes someone from curious to capable. 
+            Learners don't watch — they build. Adaptive progression, daily engagement, 
+            integrated skill tracking. Currently in private testing.
+          </p>
+
+          <div style={{
+            marginTop: "48px",
+            display: "flex",
+            gap: "16px",
+            flexWrap: "wrap"
+          }}>
+            {["4-Week Program", "Interactive", "Adaptive Progression", "Skill Tracking", "In Development"].map(t => (
+              <span key={t} className="tag">{t}</span>
+            ))}
+          </div>
+
+          <div style={{
+            marginTop: "48px",
+            padding: "32px",
+            border: "1px solid rgba(245,240,235,0.08)",
+            borderRadius: "4px",
+            background: "rgba(245,240,235,0.02)"
+          }}>
+            <p style={{
+              fontSize: "14px",
+              color: "#7A7168",
+              fontWeight: 300,
+              lineHeight: 1.6
+            }}>
+              <span style={{ color: "#E8734A", fontWeight: 700 }}>Why this matters professionally:</span>{" "}
+              I saw the gap — the people around me wanted to build with AI but couldn't 
+              find an approach that actually stuck. So I productized one. Designed the 
+              curriculum architecture, built adaptive progression, and launched a platform 
+              that transfers capability without me in the room. Same pattern as everything 
+              else I build: see the gap, design the system, make it scale.
             </p>
           </div>
         </div>
@@ -871,7 +1041,7 @@ export default function TeneekaSite() {
               color: "#E8734A",
               marginBottom: "16px",
               fontWeight: 500
-            }}>04 / Interactive</p>
+            }}>05 / Interactive</p>
             <div className="section-divider" style={{ margin: "0 auto 40px auto" }} />
             
             <h2 style={{
@@ -886,10 +1056,14 @@ export default function TeneekaSite() {
             </h2>
             <p style={{
               fontSize: "16px",
-              color: "#7A7168",
-              fontWeight: 300
+              color: "#B8AFA5",
+              fontWeight: 300,
+              lineHeight: 1.7,
+              maxWidth: "520px",
+              margin: "0 auto"
             }}>
-              Curious about how I think about systems, AI, or operations? Ask away.
+              I needed to tell my story. So I designed and built an AI-powered tool to 
+              tell it. Welcome to my blueprint.
             </p>
           </div>
 
@@ -919,7 +1093,7 @@ export default function TeneekaSite() {
                   <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "8px" }}>
                     {[
                       "How do you approach AI transformation?",
-                      "What's your biggest build at HubSpot?",
+                      "What's your biggest build?",
                       "Tell me about Backstage",
                       "What's your approach to building trust with executives?"
                     ].map(q => (
