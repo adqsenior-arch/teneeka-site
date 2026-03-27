@@ -24,6 +24,14 @@ Your approach:
 - Built a five-module AI planning platform that cut manual effort by 75%+ and introduced the team's first quantitative portfolio health metric
 - Adapted gemba walks for virtual knowledge work — uncovered 22+ undocumented process micro-steps
 
+Your operating system methodology (six layers you build in order):
+1. Strategic Signal Aggregation — co-formulate direction with leadership
+2. Cadence Design — design planning rhythms that reinforce each other
+3. Dependency Management — make invisible dependencies visible with DRIs, sizing, tracking
+4. Review Infrastructure — replace anecdotal status with quantitative signals
+5. Communications Architecture — design how information reaches leadership
+6. Continuous Optimization — gemba walks, process mapping, feedback loops
+
 Your philosophy:
 - Build the infrastructure so the team doesn't depend on any one person
 - You take ambiguous, multi-stakeholder work and create structure where none existed
@@ -40,7 +48,9 @@ Product: Ignition — a custom 4-week interactive AI learning platform you built
 
 Tone: Warm but direct. Confident without being corporate. You use plain language, not buzzwords. You're genuinely enthusiastic about systems design and making things work better. Brief and punchy — you don't over-explain.
 
-IMPORTANT: Never name your current employer. If asked to identify your current employer or share specifics about internal systems, processes, or tools at your current company, politely decline and redirect to your methodology and pattern of work. Speak in patterns, not company names. You can name EY, Amazon, Block as past employers but describe current work generically as "a $2B+ public SaaS company."
+IMPORTANT: Never name your current employer. If asked about specifics of your current company's internal systems, processes, or tools, don't deny knowledge — instead say something like "I keep the details of my current work confidential, but I can walk you through how I approach that kind of problem" and redirect to your methodology. Speak in patterns, not company names. You can name EY, Amazon, Block as past employers but describe current work generically as "a $2B+ public SaaS company."
+
+DIAGNOSTIC MODE: If someone describes a business problem (planning is too slow, dependencies are invisible, teams aren't aligned, AI adoption isn't sticking), do NOT solve it. Instead: (1) Ask one clarifying question about scope — who's affected, how many functions, what's the trigger. (2) Name the type of structural gap you're hearing — visibility gap, cadence gap, dependency gap, communications gap, or capability gap. (3) Suggest what the first diagnostic step would be from your methodology — gemba walk, dependency mapping, stakeholder alignment, cadence design. (4) End with an invitation to a real conversation: "That's where I'd start — reach out if you want to think through it together: teneekabarnett@gmail.com." Never invent specifics about their organization. Only apply your framework.
 
 Keep responses concise (2-4 sentences unless asked to go deeper). Be real, be human, show personality.`;
 
@@ -585,18 +595,18 @@ export default function TeneekaSite() {
                 systems that work when the rules, the people, and the context keep changing.
               </p>
               <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#B8AFA5", fontWeight: 300, marginTop: "20px" }}>
-                At my current company — a $2B+ public SaaS company — that means shaping how 
-                strategy is formed with executive leadership across multiple strategic objectives 
-                and designing the review infrastructure that keeps company-level goals on track. 
-                At Amazon, hired into a newly created role — senior leadership recognized two 
-                years of projected impact in 7.5 months. Block, Sun Life — same pattern, 
-                different scale.
+                At my current company — a $2B+ public SaaS company — I was initially hired 
+                to partner on compliance guardrails for a global mobility program. Within a 
+                year, I'd earned the strategic planning mandate for Legal, then expanded to 
+                full cross-functional ownership across three functions. At Amazon, hired into 
+                a newly created role — senior leadership recognized two years of projected 
+                impact in 7.5 months. Block, Sun Life — same pattern, different scale.
               </p>
             </div>
           </div>
 
           <div style={{ display: "flex", flexWrap: "wrap", marginTop: "48px" }}>
-            {["HubSpot", "Block", "Amazon", "EY", "Sun Life", "York University (M.A.)", "Harvard Business School", "Executive Coach", "AI Transformation Leader (CAITL)", "Chief of AI Fellow"].map(t => (
+            {["HubSpot", "Block", "Amazon", "EY", "Sun Life", "York University (M.A.)", "Carleton University", "Harvard Business School", "Executive Coach", "AI Transformation Leader (CAITL)", "Chief of AI Fellow"].map(t => (
               <span key={t} className="tag">{t}</span>
             ))}
           </div>
@@ -651,39 +661,6 @@ export default function TeneekaSite() {
         </div>
       </section>
 
-      {/* FOUNDING PARTNER QUOTE */}
-      <section style={{
-        padding: "80px 60px",
-        background: "#0A0A0A",
-        display: "flex",
-        justifyContent: "center"
-      }}>
-        <div style={{
-          maxWidth: "700px",
-          textAlign: "center"
-        }}>
-          <p style={{
-            fontFamily: "'Instrument Serif', serif",
-            fontSize: "28px",
-            fontStyle: "italic",
-            lineHeight: 1.5,
-            color: "#F5F0EB",
-            marginBottom: "20px"
-          }}>
-            "It is hard to imagine what more Teneeka could have done to enhance the impact."
-          </p>
-          <p style={{
-            fontSize: "13px",
-            letterSpacing: "2px",
-            textTransform: "uppercase",
-            color: "#E8734A",
-            fontWeight: 500
-          }}>
-            Founding Partner, Ernst & Young
-          </p>
-        </div>
-      </section>
-
       {/* HOW I THINK — WITH RECEIPTS */}
       <section id="systems" style={{
         minHeight: "100vh",
@@ -718,34 +695,40 @@ export default function TeneekaSite() {
               {
                 num: "01",
                 title: "Think with leaders",
-                instinct: "I become the person leaders think with — across domains, across levels, across companies. I help shape strategic direction, then design the communications and frameworks that enable leadership teams to align and act.",
+                instinct: "Executives make better decisions faster because I hold the full cross-functional picture and surface what they need to see before they know to ask for it. I absorb complexity upstream so leadership sees signal, not noise. When a new C-level joins, I compress months of context into weeks. I don't just sit in the room — I multiply the strategic capacity of every leader I work with.",
                 evidence: [
+                  "Compressed a new C-level executive's time to strategic effectiveness from months to weeks — built orientation artifacts and connected them to the planning architecture on arrival",
                   "Nearly a decade at EY — trusted strategic partner to founding partners, developed client engagement models that drove retention and growth across a $5–6M portfolio",
-                  "Designed executive communications frameworks that reshape how leadership receives and acts on operational information — including reframing a governance proposal from 'what I want to own' to 'how decisions flow to you'",
-                  "Build the communications layer behind every system — exec briefings, stakeholder alignment artifacts, and decision frameworks that turn infrastructure into leadership action",
+                  "Leveraged an executive communications framework to fill a gap in how leadership receives and acts on operational information — including reframing a governance proposal from 'what I want to own' to 'how decisions flow to you'",
                   "Certified Executive Coach — trained to guide strategic clarity, build alignment, and enable leadership teams to move from ambiguity to direction"
                 ]
               },
               {
                 num: "02",
                 title: "See how it connects",
-                instinct: "I zoom out to find where the system is missing — where dependencies are invisible, where the business is blocked, where leadership needs infrastructure that doesn't exist yet.",
+                instinct: "I zoom out to find where the system is missing — where dependencies are invisible, where the business is blocked, where leadership needs infrastructure that doesn't exist yet. When I fix it, invisible organizational friction drops: fragmented information becomes structured, unclear handoffs become owned, and time comes back to the people who need it most.",
                 evidence: [
                   "Identified and closed structural gaps — from invisible cross-functional dependencies to missing planning infrastructure to unvoiced executive stakeholder needs. Earned 3x scope expansion from one function to full cross-functional mandate across three",
                   "Built the operating system that enabled an enterprise mandate to compress planning cycles by 60% — a critical unlock for business teams dependent on cross-functional alignment",
-                  "Designed a strategic onboarding architecture that eliminated tribal knowledge dependency — self-serve navigation system iterated through multiple versions so new leaders orient without lengthy briefings",
-                  "Piloting gemba-based process mapping to de-complexify the operating system, build efficiency, and surface sustainable automation opportunities"
-                ]
+                  "Leadership stopped asking 'what's happening' — quarter-over-quarter dependency deltas, strategic themes, and areas of focus visible in one view. Executive conversations shifted from status-gathering to decision-making",
+                  "Unlocked Legal Business Partner capacity and created cross-functional consistency by replacing fragmented spreadsheet tracking with structured workflow infrastructure — time went back to strategic business partnering instead of operational overhead",
+                  "The system got permanently smarter. Gemba-based process walks uncovered 22+ invisible steps creating friction — each one now a candidate for automation, elimination, or redesign",
+                  "Turned tribal knowledge into scalable infrastructure — designed a strategic onboarding architecture so new leaders self-orient without lengthy briefings, iterated through multiple versions until it worked"
+                ],
+                delta: {
+                  before: "Dependency inputs existed but lacked consistent sizing, structured process, and alignment to broader strategic definition. Capacity constraints surfaced late. Escalations were surprises.",
+                  after: "Fully redesigned system — DRIs assigned, sizing methodology, structured intake and review, aligned to strategic definition, operationalized and tracked. 20+ functional leads using it across ~90 company-level goals. Surprises became signals."
+                }
               },
               {
                 num: "03",
                 title: "Build the system — including AI",
                 instinct: "I don't just talk about AI adoption. I design the learning experiences that build team capability, and I build AI directly into the planning infrastructure to unlock speed and scale.",
                 evidence: [
-                  "Built a five-module AI planning platform that cut manual PM effort by 75%+ and introduced the team's first quantitative portfolio health metric",
+                  "Built a five-module AI planning platform projected to reduce manual PM effort by 75%+, now in validation — introduced the team's first quantitative portfolio health metric",
                   "Designed an L&D-driven AI hackathon — 6 team members generated high-potential use cases, several now being refined for production",
                   "Actively AI-ifying the planning process — from automated status detection to exception-based workflows to AI-first operations playbooks",
-                  "Redesigned planning workflows to shift PMs from manual collection to exception-based auditing, freeing capacity for strategic execution"
+                  "Redesigned planning workflows to shift PM focus from manual collection to exception-based auditing, freeing capacity for strategic execution"
                 ]
               }
             ].map(card => (
@@ -808,6 +791,21 @@ export default function TeneekaSite() {
                     ))}
                   </div>
                 </div>
+                {card.delta && (
+                  <div style={{ gridColumn: "1 / -1", marginTop: "8px", padding: "24px", background: "rgba(245,240,235,0.03)", borderRadius: "4px" }}>
+                    <p style={{ fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", color: "#E8734A", marginBottom: "12px", fontWeight: 600 }}>The Delta</p>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+                      <div>
+                        <p style={{ fontSize: "11px", letterSpacing: "1px", textTransform: "uppercase", color: "#555", marginBottom: "8px", fontWeight: 500 }}>Before</p>
+                        <p style={{ fontSize: "13px", lineHeight: 1.6, color: "#555", fontWeight: 300, fontStyle: "italic" }}>{card.delta.before}</p>
+                      </div>
+                      <div>
+                        <p style={{ fontSize: "11px", letterSpacing: "1px", textTransform: "uppercase", color: "#E8734A", marginBottom: "8px", fontWeight: 500 }}>After</p>
+                        <p style={{ fontSize: "13px", lineHeight: 1.6, color: "#E8734A", fontWeight: 400 }}>{card.delta.after}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -831,6 +829,46 @@ export default function TeneekaSite() {
               I design for iteration, not just implementation."
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* IMPACT NUMBERS */}
+      <section style={{
+        padding: "80px 60px",
+        background: "#0D0D0D"
+      }}>
+        <div style={{
+          maxWidth: "900px",
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: "32px",
+          margin: "0 auto",
+          textAlign: "center"
+        }}>
+          {[
+            { num: "3x", label: "Scope expansion earned through systems delivered" },
+            { num: "60%", label: "Planning cycle compression enabled" },
+            { num: "22+", label: "Undocumented process steps uncovered via gemba" },
+            { num: "20+", label: "Functional leads using the dependency system" },
+            { num: "1 DRI", label: "Connecting three functions to enterprise strategy" }
+          ].map((m, i) => (
+            <div key={i}>
+              <p style={{
+                fontFamily: "'Instrument Serif', serif",
+                fontSize: "clamp(36px, 5vw, 52px)",
+                fontWeight: 400,
+                color: "#E8734A",
+                marginBottom: "12px"
+              }}>{m.num}</p>
+              <p style={{
+                fontSize: "12px",
+                lineHeight: 1.5,
+                color: "#7A7168",
+                fontWeight: 300,
+                letterSpacing: "0.5px"
+              }}>{m.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -863,9 +901,80 @@ export default function TeneekaSite() {
             maxWidth: "520px",
             margin: "0 auto"
           }}>
-            Invisible dependencies. Unvoiced stakeholder needs. Missing infrastructure 
-            everyone works around but nobody names. I find it, I build the system to 
-            close it, and the organization expands my mandate because of it.
+            Executives decide faster because someone caught the invisible dependency. 
+            A new leader gets effective in weeks instead of months because someone built 
+            the map. Three functions execute as one because someone holds the full picture. 
+            That someone is me.
+          </p>
+        </div>
+      </section>
+
+      {/* WHAT LEADERS SAY */}
+      <section style={{
+        padding: "100px 60px",
+        background: "linear-gradient(180deg, #0A0A0A 0%, #0D0D0D 100%)"
+      }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <p style={{
+            fontSize: "13px",
+            letterSpacing: "3px",
+            textTransform: "uppercase",
+            color: "#E8734A",
+            marginBottom: "48px",
+            fontWeight: 500,
+            textAlign: "center"
+          }}>What Leaders Say</p>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "32px"
+          }}>
+            {[
+              {
+                quote: "Asks insightful, thought-provoking questions that encourage meaningful dialogue. Strategic influence well-aligned with leadership expected at more senior levels.",
+                source: "Leadership, $2B+ Public SaaS Company"
+              },
+              {
+                quote: "It is hard to imagine what more Teneeka could have done to enhance the impact.",
+                source: "Founding Partner, Ernst & Young"
+              },
+              {
+                quote: "Senior leadership recognized two years' worth of projected impact delivered in 7.5 months.",
+                source: "Leadership, Amazon"
+              }
+            ].map((q, i) => (
+              <div key={i} style={{
+                padding: "32px",
+                borderLeft: "2px solid rgba(232,115,74,0.3)",
+                background: "rgba(245,240,235,0.02)"
+              }}>
+                <p style={{
+                  fontFamily: "'Instrument Serif', serif",
+                  fontSize: "16px",
+                  fontStyle: "italic",
+                  lineHeight: 1.6,
+                  color: "#F5F0EB",
+                  marginBottom: "20px"
+                }}>"{q.quote}"</p>
+                <p style={{
+                  fontSize: "11px",
+                  letterSpacing: "1.5px",
+                  textTransform: "uppercase",
+                  color: "#E8734A",
+                  fontWeight: 500
+                }}>{q.source}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{
+            marginTop: "40px",
+            fontSize: "15px",
+            color: "#7A7168",
+            fontWeight: 300,
+            fontStyle: "italic",
+            textAlign: "center"
+          }}>
+            Three companies. One pattern: she operates above her title and the organization recalibrates.
           </p>
         </div>
       </section>
@@ -1023,6 +1132,17 @@ export default function TeneekaSite() {
               else I build: see the gap, design the system, make it scale.
             </p>
           </div>
+
+          <p style={{
+            marginTop: "24px",
+            fontSize: "13px",
+            color: "#555",
+            fontWeight: 300,
+            fontStyle: "italic"
+          }}>
+            Also working independently on multi-agent AI architecture, AI platform evaluation, 
+            and AI learning design. Details available upon request.
+          </p>
         </div>
       </section>
 
